@@ -28,7 +28,7 @@ Commands
 ### `rdid` and `rdid_dy`
 
 The `rdid` command estimates bounds on the average treatment effect (ATE) in the canonical $2 \times 2$ DID setting where there are two groups (control and treatment) and a single treatment event.
-Using a simulated dataset ([sim_rdid.dta](sim_rdid.dta)), we can estimate the RDID bounds and their confidence intervals.
+Using a simulated dataset ([sim_rdid.dta](https://github.com/KyunghoonBan/rdid/raw/refs/heads/main/sim_rdid.dta)), we can estimate the RDID bounds and their confidence intervals.
 ```Stata
 . use sim_rdid, clear
 . rdid Y, treat(D) post(pos) info(t)
@@ -78,7 +78,7 @@ help rdid
 ### `rdidstag'
 
 The \texttt{rdidstag} command estimates bounds on the ATT over time for different cohorts in the staggered adoption design.
-Using a simulated dataset ([sim_rdidstag.dta](sim_rdidstag.dta)), we can estimate the RDID bounds and their confidence intervals.
+Using a simulated dataset ([sim_rdidstag.dta](https://github.com/KyunghoonBan/rdid/raw/refs/heads/main/sim_rdidstag.dta)), we can estimate the RDID bounds and their confidence intervals.
 ```Stata
 . use sim_rdidstag, clear
 . rdidstag Y, g(G) t(year) post(posttreat) info(year)
