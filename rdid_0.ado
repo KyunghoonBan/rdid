@@ -84,7 +84,7 @@ prog def rdid_0, rclass
 			local SBtmp = _b[`D']
 			local GDID_est = `est1' - `SBtmp'
 			
-			return scalar _b`ind' = `GDID_est
+			return scalar _b`ind' = `GDID_est'
 			
 			
 			local ind = `ind' + 1
