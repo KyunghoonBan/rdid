@@ -25,7 +25,7 @@ github install KyunghoonBan/rdid
 Commands
 --------
 
-### `rdid' and `rdid_dy`
+### `rdid` and `rdid_dy`
 
 The `rdid` command estimates bounds on the average treatment effect (ATE) in the canonical $2 \times 2$ DID setting where there are two groups (control and treatment) and a single treatment event.
 Using a simulated dataset ([sim_rdid.dta](sim_rdid.dta)), we can estimate the RDID bounds and their confidence intervals.
