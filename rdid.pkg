@@ -1,4 +1,4 @@
-v 1.8.0
+v 1.8.1
 d 'RDID': Robust difference-in-differences
 d 
 d implement the robust difference-in-differences (RDID) framework for both the canonical 2 by 2 DID settings and staggered adoption designs.
@@ -8,11 +8,19 @@ d License: MIT
 d 
 F rdid.ado
 F rdid.ado
+F rdid.ado
 F rdid.sthlp
+F rdid.sthlp
+F rdid_0.ado
+F rdid_1.ado
+F rdidstag.ado
 F rdidstag.ado
 F rdidstag.ado
 F rdidstag.sthlp
+F rdidstag.sthlp
 F sim_rdid.dta
+F sim_rdid.dta
+F sim_rdidstag.dta
 F sim_rdidstag.dta
 f rdid.ado
 f rdidstag.ado
