@@ -22,7 +22,7 @@ program define rdid_dy, eclass
 			exit 498
 		}
 		if (`losstype' == 0){
-			local losstype = "inf"
+			local losstype "inf"
 		}
 	}
 	

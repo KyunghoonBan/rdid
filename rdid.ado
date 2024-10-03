@@ -1,5 +1,5 @@
 /***
-_version 1.8.2_
+_version 1.8.3_
 
 rdid
 ====
@@ -153,13 +153,13 @@ prog def rdid, eclass
 	di "D name: `D'"
 	if "`X'" == ""{
 		di "no covariates"
-		local iscov = 0
-		local X = "0"
+		local iscov 0
+		local X "0"
 	}
 	else {
 		di "X name(s): `X'"
-		local X = "`X' 0"
-		local iscov = 1
+		local X "`X' 0"
+		local iscov 1
 	
 		
 		
@@ -204,10 +204,10 @@ prog def rdid, eclass
 		}
 		else {
 			if "`: var label `Y''" == "" {
-				local Ylab = "Y"
+				local Ylab "Y"
 			}
 			else {
-				local Ylab = "`: var label `Y''"
+				local Ylab "`: var label `Y''"
 			}
 			scatter __SB __I_ind, color(black) ////
 			title("Selection Biases (`Ylab')", size(medium)) ////
