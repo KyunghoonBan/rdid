@@ -31,8 +31,6 @@ prog def rdid_0, rclass
 	
 	
 	
-	preserve
-	
 	
 	
 	
@@ -86,17 +84,12 @@ prog def rdid_0, rclass
 			local SBtmp = _b[`D']
 			local GDID_est = `est1' - `SBtmp'
 			
-			if `ind' == 1 {
-				matrix define ret_all = `GDID_est'
-			}
-			else {
-				matrix ret_all = (ret_all, `GDID_est')
-			}
+			return scalar _b`ind' = `GDID_est
+			
 			
 			local ind = `ind' + 1
 		}
 		
-		ereturn post ret_all
 		
 	
 	

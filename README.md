@@ -1,4 +1,4 @@
-_v. 1.8.3_  
+_v. 1.8.4_  
 
 `rdid` : Robust difference-in-differences
 =========================================

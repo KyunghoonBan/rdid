@@ -1,5 +1,5 @@
 /***
-_version 1.8.3_
+_version 1.8.4_
 
 rdid
 ====
@@ -230,6 +230,7 @@ prog def rdid, eclass
 		
 
 		
+		local bootlist ""
 		local ind = 1
 		foreach elevar of local infoelements {
 			rdid_1 `Y' `X' `D' `I' `postname' `elevar' `iscov' `rdidtype'
@@ -249,6 +250,7 @@ prog def rdid, eclass
 				local SB_N_min = min(`SB_N_min', r(SB))
 				local SB_N_max = max(`SB_N_max', r(SB))
 			}
+			local bootlist "`bootlist' r(_b`ind')"
 			local ind = `ind' + 1 
 		}
 		local DR = r(DR_ret)
@@ -314,10 +316,10 @@ prog def rdid, eclass
 		quietly {
 			
 			if "`clustername'" == ""{
-				bootstrap `ret_list', reps(`brep') nodrop saving(__rdid_tmp, replace): rdid_0 `Y' `X' `D' `I' `postname' 0 `iscov' `rdidtype' 0 `infoelements'
+				bootstrap `bootlist', reps(`brep') nodrop saving(__rdid_tmp, replace): rdid_0 `Y' `X' `D' `I' `postname' 0 `iscov' `rdidtype' 0 `infoelements'
 			}
 			else {
-				bootstrap `ret_list', reps(`brep') cluster(`clustername') nodrop saving(__rdid_tmp, replace): rdid_0 `Y' `X' `D' `I' `postname' 0 `iscov' `rdidtype' 0 `infoelements'
+				bootstrap `bootlist', reps(`brep') cluster(`clustername') nodrop saving(__rdid_tmp, replace): rdid_0 `Y' `X' `D' `I' `postname' 0 `iscov' `rdidtype' 0 `infoelements'
 			}
 			
 			append using __rdid_tmp.dta
@@ -325,15 +327,15 @@ prog def rdid, eclass
 			
 			local ind = 1
 			foreach elevar of local infoelements {
-				gen _b_b`ind' = _b_c`ind'
-				gen _b_d`ind' = _b_c`ind' + `d_`ind'_max'
-				replace _b_c`ind' = _b_c`ind' + `d_`ind'_min'
+				gen _b_b`ind' = _bs_`ind'
+				gen _b_d`ind' = _bs_`ind' + `d_`ind'_max'
+				replace _bs_`ind' = _bs_`ind' + `d_`ind'_min'
 				local ind = `ind' + 1
 			}
 			local n_info = `ind' - 1
 			
-			egen minValues = rowmin(_b_c1-_b_c`n_info')
-			egen maxValues = rowmax(_b_d1-_b_d`n_info')
+			egen __minValues = rowmin(_bs_1-_bs_`n_info')
+			egen __maxValues = rowmax(_b_d1-_b_d`n_info')
 			
 			
 		}
@@ -342,8 +344,8 @@ prog def rdid, eclass
 		
 		
 		
-		qui gen minValue_diff = minValues - `theta_N_min'
-		qui gen maxValue_diff = maxValues - `theta_N_max'
+		qui gen __minValue_diff = __minValues - `theta_N_min'
+		qui gen __maxValue_diff = __maxValues - `theta_N_max'
 		
 		
 		
@@ -351,12 +353,12 @@ prog def rdid, eclass
 		
 		
 		local upper = 100 - (100 - `level')/2
-		_pctile minValue_diff, p(50, `upper')
+		_pctile __minValue_diff, p(50, `upper')
 		local q_min_diff_50 = r(r1)
 		local q_min_diff_upper = r(r2)
 		
 		local lower = (100 - `level')/2
-		_pctile maxValue_diff, p(`lower', 50)
+		_pctile __maxValue_diff, p(`lower', 50)
 		local q_max_diff_lower = r(r1)
 		local q_max_diff_50 = r(r2)
 		
@@ -369,10 +371,10 @@ prog def rdid, eclass
 		
 		local omega = `theta_m_max' - sqrt(`N_val'/`m_val') * `q_max_diff_50' - `theta_m_min' + sqrt(`N_val'/`m_val') * `q_min_diff_50'
 		local omega_pos = max(0, `omega')
-		_pctile minValues, p(25, 75)
+		_pctile __minValues, p(25, 75)
 		local q_min_25 = r(r1)
 		local q_min_75 = r(r2)
-		_pctile maxValues, p(25, 75)
+		_pctile __maxValues, p(25, 75)
 		local q_max_25 = r(r1)
 		local q_max_75 = r(r2)
 		
@@ -380,10 +382,10 @@ prog def rdid, eclass
 		local rho = sqrt(`N_val'/`m_val') / (log(`m_val') * max(`q_max_75' - `q_max_25', `q_min_75' - `q_min_25'))
 		local p = 100 - normal(`rho' * `omega_pos')*(100 - `level')
 		
-		_pctile minValue_diff, p(`p')
+		_pctile __minValue_diff, p(`p')
 		local q_min_diff_p = r(r1)
 		local cp = 100 - `p'
-		_pctile maxValue_diff, p(`cp')
+		_pctile __maxValue_diff, p(`cp')
 		local q_max_diff_cp = r(r1)
 		
 		local GDID_cilbe = `theta_m_min' - sqrt(`N_val'/`m_val') * `q_min_diff_p'
