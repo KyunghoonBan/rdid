@@ -1,4 +1,4 @@
-_version 1.8.1_
+_version 1.8.2_
 
 rdidstag
 ====
