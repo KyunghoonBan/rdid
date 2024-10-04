@@ -119,8 +119,8 @@ help rdidstag
 ```
 
 
-Author
-------
+Authors
+-------
 
 **Kyunghoon Ban**  
 Rochester Institute of Technology  
