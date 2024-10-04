@@ -69,13 +69,13 @@ If you have more than 2 time periods after the treatment event, you can estimate
 Note that the option `t(t)' is used to specify the time index for the post-treatment periods.
 
 
-Please see [the markdown document](rdid.md) or type the following in Stata for details.
+For more details, please see [the markdown document](rdid.md) or type the following in Stata.
 ```
 help rdid
 ```
 
 
-### `rdidstag'
+### `rdidstag`
 
 The \texttt{rdidstag} command estimates bounds on the ATT over time for different cohorts in the staggered adoption design.
 Using a simulated dataset ([sim_rdidstag.dta](https://github.com/KyunghoonBan/rdid/raw/refs/heads/main/sim_rdidstag.dta)), we can estimate the RDID bounds and their confidence intervals.
@@ -113,7 +113,7 @@ no covariates
 ```
 Note that the outcome variable is `Y`, the cohort variable is `G`, the time index is `year`, the post-treatment indicator for which ATTs are estimated is `pos`, and the information index is `year` (pre-treatment periods are used as information).
 
-Please see [the markdown document](rdidstag.md) or type the following in Stata for details.
+For more details, please see [the markdown document](rdidstag.md) or type the following in Stata.
 ```
 help rdidstag
 ```
