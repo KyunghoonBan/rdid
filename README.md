@@ -6,13 +6,13 @@ _v. 1.8.5_
 Description
 -----------
 
-The `rdid' package helps users to implement the robust difference-in-differences (RDID) framework for both the canonical 2 by 2 DID settings and staggered adoption designs.
+The `rdid' package helps users to implement the robust difference-in-differences (RDID) framework for both the canonical $2 \times 2$ DID settings and staggered adoption designs.
 
 
 Installation
 ------------
 
-The installation of the package can be done through the `github` package. If you don't have it, execute the following code in Stata.
+The installation of the package can be done through the `github` package ([haghish/github](https://github.com/haghish/github)). If you don't have it, execute the following code in Stata.
 ```
 net install github, from("https://haghish.github.io/github/")
 ```
@@ -118,6 +118,10 @@ For more details, please see [the markdown document](rdidstag.md) or type the fo
 help rdidstag
 ```
 
+Full Manual
+-----------
+
+For a more detailed formal manual of the `rdid` package, including stored results and simulation examples, please refer to [Ban and Kédagni (2024)](https://arxiv.org/abs/2410.05212).
 
 Authors
 -------
@@ -137,7 +141,7 @@ References
 ----------
 
 Ban, K. and D. Kédagni (2023). Robust Difference-in-Differences Models. [https://arxiv.org/abs/2211.06710](https://arxiv.org/abs/2211.06710/)      
-Ban, K. and D. Kédagni (2024). rdid and rdidstag: Stata commands for robust difference-in-differences.
+Ban, K. and D. Kédagni (2024). rdid and rdidstag: Stata commands for robust difference-in-differences. [https://arxiv.org/abs/2410.05212](https://arxiv.org/abs/2410.05212)
 
 
 License
